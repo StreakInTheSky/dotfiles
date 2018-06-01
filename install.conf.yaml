@@ -1,8 +1,9 @@
 - clean: ['~']
 
 - link:
-    ~/.gitconfig: gitconfig
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore_global: git/gitignore_global
+    ~/.hyper.js: hyper.js
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-
 
