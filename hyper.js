@@ -12,13 +12,13 @@ module.exports = {
     },
     // Choose either "stable" for receiving highly polished,
     // or "canary" for less polished but more frequent updates
-    updateChannel: 'stable',
+    updateChannel: 'canary',
 
     // default font size in pixels for all tabs
     fontSize: 12,
 
     // font family with optional fallbacks
-    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     // cursorColor: 'rgba(248,28,229,0.8)',
@@ -139,10 +139,18 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [// "hyper-chesterish",
-  // "hyper-ayu-mirage",
-  "hyper-material-theme", // "hyper-captain-sweetheart",
-  "hyper-tabs-enhanced", "hyperterm-cursor", "hyperlinks", "hypercwd"],
+  plugins: [
+    // "hyper-chesterish",
+    // "hyper-ayu-mirage",
+    // "hyper-captain-sweetheart",
+    "hyper-material-theme",
+    "hyper-tabs-enhanced",
+    "hyperterm-cursor",
+    "hyperlinks",
+    // "hyper-confirm",
+    "hypercwd",
+    "hyper-font-ligatures"
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
