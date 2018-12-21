@@ -1,8 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
-export PATH=/usr/local/opt/python/libexec/bin:$PATH
+export PATH=/usr/local/sbin:$HOME/bin:$PATH
+export PATH=/usr/local/opt/python/libexec/bin:$PATH # Adds python 3 to $PATH
+export PATH=$PATH:~/.composer/vendor/bin # Adds PHP Composer to $PATH
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_LAZY_LOAD=true
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/ross/.oh-my-zsh
