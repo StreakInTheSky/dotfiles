@@ -1,9 +1,10 @@
-- clean: ['~']
+- clean: ['~','~/.ssh']
 
 - link:
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.hyper.js: hyper.js
+    ~/.ssh/config: ssh-config
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/.zsh_plugins.txt: zsh_plugins.txt
