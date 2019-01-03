@@ -40,3 +40,4 @@ Linux)
     alias ls='ls --color=auto'
     ;;
 esac
+
