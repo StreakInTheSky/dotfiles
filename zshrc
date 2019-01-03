@@ -32,4 +32,9 @@ export NVM_LAZY_LOAD=true
 source ~/.zsh_plugins.sh
 
 #aliases
-alias ls='ls --color=auto'
+case $(uname) in 
+Darwin)
+    alias ls='ls -G'
+    ;;
+Linux)
+    alias ls='ls --color=auto'
