@@ -140,9 +140,6 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    // "hyper-chesterish",
-    // "hyper-ayu-mirage",
-    // "hyper-captain-sweetheart",
     "hyper-material-theme",
     "hyper-tabs-enhanced",
     "hyperterm-cursor",
