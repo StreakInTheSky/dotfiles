@@ -1,7 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/sbin:$HOME/bin:$PATH
-export PATH=/usr/local/opt/python/libexec/bin:$PATH # symlinks python3 as python
-export PATH=$PATH:~/.composer/vendor/bin # allows laravel to be executable
+
+# A different path will export depending on OS
+case $(uname) in
+Darwin)
+    export PATH=/usr/local/opt/python/libexec/bin:$PATH # symlinks python3 as python
+    export PATH=$PATH:~/.composer/vendor/bin # allows laravel to be executable
+    ;;
+esac
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
