@@ -6,4 +6,5 @@
     ~/.hyper.js: hyper.js
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+    ~/.zsh_plugins.txt: zsh_plugins.txt
 
