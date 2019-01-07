@@ -3,7 +3,15 @@
 - link:
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
-    ~/.hyper.js: hyper.js
+    ~/.hyper.js:
+        if: |
+            if [ $(uname) = "Darwin" ]; then
+                return 0
+            else
+                return 1
+            fi
+        force: true
+        path: hyper.js
     ~/.ssh/config: ssh-config
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
