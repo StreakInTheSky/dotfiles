@@ -17,22 +17,27 @@ compinit -C
 autoload -U promptinit; promptinit
 #prompt pure
 
+function () {
+local OS=$(uname)
+
 # Different paths for different OS
-case $(uname) in
+case $OS in
 Darwin)
-    export PATH=/usr/local/opt/python/libexec/bin:$PATH # symlinks python3 as python
-    export PATH=$PATH:~/.composer/vendor/bin # allows laravel to be executable
+    PATH=/usr/local/opt/python/libexec/bin:$PATH # symlinks python3 as python
+    PATH=$PATH:~/.composer/vendor/bin # allows laravel to be executable
     ;;
 Linux)
-    export PATH=$PATH:/usr/local/go/bin # add Go tools
+    PATH=$PATH:/usr/local/go/bin # add Go tools
     ;;
 esac
+
+export PATH
 
 export NVM_LAZY_LOAD=true
 source ~/.zsh_plugins.sh
 
 #aliases
-case $(uname) in 
+case $OS in 
 Darwin)
     alias ls='ls -G'
     ;;
@@ -40,4 +45,5 @@ Linux)
     alias ls='ls --color=auto'
     ;;
 esac
+}
 
