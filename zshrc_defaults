@@ -1,0 +1,41 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+fpath+=~/.zfunc
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle :compinstall filename '~/.zshrc'
+
+autoload -Uz compinit
+compinit -C
+# End of lines added by compinstall
+
+export NVM_LAZY_LOAD=true
+
+#gets plugins bundled by antibody
+source ~/.zsh_plugins.sh
+
+# setup fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# setup pyenv
+eval "$(pyenv init -)"
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+eval "$(starship init zsh)"
+
+#aliases
+alias ls='lsd'
+alias vi='nvim'
+alias zd='zoxide'

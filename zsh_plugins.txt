@@ -1,8 +1,6 @@
 # Zsh plugins for Antibody to install
 lukechilds/zsh-nvm
 zsh-users/zsh-autosuggestions
-mafredri/zsh-async
-sindresorhus/pure
 
 # from oh-my-zsh
 robbyrussell/oh-my-zsh path:plugins/git
