@@ -1,5 +1,7 @@
 #!/usr/local/bin/zsh
 
+setopt nullglob
+
 function symlink() {
 	item=$1
 	linklocation=$2 # path like ~/.config

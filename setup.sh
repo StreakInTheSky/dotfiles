@@ -17,7 +17,7 @@ antibody bundle < ~/.dotfiles/zsh_plugins.txt > ~/.zsh_plugins.sh
 
 echo "\nConfiguring .zshrc with defaults"
 echo "source ~/.dotfiles/zshrc_defaults" >> ~/.zshrc
-zsh -c "source ~/.zshrc"
+#zsh -c "source ~/.zshrc"
 
 echo "\nInstalling python"
 git clone https://github.com/momo-lab/pyenv-install-latest.git "$(pyenv root)"/plugins/pyenv-install-latest
@@ -28,8 +28,11 @@ echo "\nInstalling rust"
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 rustup completions zsh > ~/.zfunc/_rustup
 
+echo "\nInstalling node"
+zsh -i -c "nvm install --lts"
+
 echo "\nCreating symlinks to config files"
-zsh ~./dotfiles/link.zsh
+zsh ~/.dotfiles/link.zsh
 
 echo "\nInstalling Neovim Plugins"
 nvim -e +PlugInstall +qa
@@ -37,6 +40,6 @@ nvim -e +PlugInstall +qa
 echo "\nAdding wezterm terminfo"
 tempfile=$(mktemp) \
   && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
-  && tic -x -o ~/.terminfo $tempfile \
+  && sudo tic -x -o ~/.terminfo $tempfile \
   && rm $tempfile
 
