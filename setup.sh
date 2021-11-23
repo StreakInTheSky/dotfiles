@@ -29,7 +29,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 rustup completions zsh > ~/.zfunc/_rustup
 
 echo "\nCreating symlinks to config files"
-sh ~./dotfiles/link.sh
+zsh ~./dotfiles/link.zsh
 
 echo "\nInstalling Neovim Plugins"
 nvim -e +PlugInstall +qa
