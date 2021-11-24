@@ -9,6 +9,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip' 
+Plug 'L3MON4D3/LuaSnip' 
 Plug 'simrat39/rust-tools.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -49,8 +51,6 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 lua <<EOF
 -- Langauge Servers & Plugins
-require'rust-tools'.setup{}
-require'lspconfig'.denols.setup{}
 
 -- lsp with nvim-cmp
 local nvim_lsp = require('lspconfig')
@@ -59,7 +59,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'pyright', 'denols' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     -- on_attach = my_custom_on_attach,
@@ -67,12 +67,23 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Enable Rust-tools with nvim-cmp
+require'rust-tools'.setup({ server = { capablities = capabilities } })
+
+-- luasnip setup
+local luasnip = require 'luasnip'
+
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,noinsert,noselect'
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local cmp = require'cmp'
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -87,6 +98,8 @@ cmp.setup {
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -94,14 +107,17 @@ cmp.setup {
     ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
     end,
   },
   sources = {
-    { name = 'nvim_lsp' }
-  }
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
 }
 
 -- Org Mode
