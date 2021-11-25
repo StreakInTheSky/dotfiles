@@ -34,8 +34,8 @@ eval "$(pyenv init -)"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 #aliases
 alias ls='lsd'
 alias vi='nvim'
-alias zd='zoxide'
