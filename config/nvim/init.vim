@@ -50,6 +50,16 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 lua <<EOF
+-- Tree-sitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", 
+  sync_install = false, 
+  highlight = {
+    enable = true, 
+    additional_vim_regex_highlighting = false,
+  },
+}
+
 -- Langauge Servers & Plugins
 
 -- lsp with nvim-cmp
