@@ -25,18 +25,19 @@ echo "\nConfiguring .zshrc with defaults"
 echo "source ~/.dotfiles/zshrc_defaults" >> ~/.zshrc
 zsh -c "source ~/.zshrc"
 
+echo "\nInstalling node"
+zsh -i -c "nvm install --lts"
+
 echo "\nInstalling python"
 git clone https://github.com/momo-lab/pyenv-install-latest.git "$(pyenv root)"/plugins/pyenv-install-latest
 pyenv install-latest
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 poetry completions zsh > ~/.zfunc/_poetry
+zsh -i -c "npm i -g pyright"
 
 echo "\nInstalling rust" 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 rustup completions zsh > ~/.zfunc/_rustup
-
-echo "\nInstalling node"
-zsh -i -c "nvm install --lts"
 
 echo "\nCreating symlinks to config files"
 zsh ~/.dotfiles/link.zsh
