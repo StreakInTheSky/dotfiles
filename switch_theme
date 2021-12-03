@@ -1,0 +1,13 @@
+#! /bin/sh
+
+theme=$([ $1 ] && [ $1 = 'light' ] && echo $1 || echo 'dark')
+
+sed -i '' -r "s/^(local theme = ).*/\1\'$theme\'/" ~/.config/wezterm/wezterm.lua
+
+if [ $theme = 'dark' ]; then
+	BAT_THEME='Coldark-Dark'
+else
+	BAT_THEME='Coldark-Cold'
+fi
+export BAT_THEME
+

@@ -36,6 +36,12 @@ export PATH="$HOME/.poetry/bin:$PATH"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+export DOTFILES=~/.dotfiles
+# sets terminal theme to system theme mode
+theme=$([ $(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null) ] || echo 'light')
+source $DOTFILES/switch_theme $theme
+
 #aliases
 alias ls='lsd'
 alias vi='nvim'
+alias theme='source $DOTFILES/switch_theme'

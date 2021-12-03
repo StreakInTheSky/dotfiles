@@ -21,6 +21,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
+let g:tokyonight_style = 'night'
 colorscheme tokyonight
 
 set mouse=a
