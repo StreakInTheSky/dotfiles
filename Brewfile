@@ -3,6 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "wez/wezterm"
 brew "antibody"
 brew "bat"
 brew "deno"
@@ -24,7 +25,7 @@ brew "zsh"
 brew "zsh-completions"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
-cask "wezterm"
+cask "wezterm" args: ["no-quarantine"]
 
 # For installing/compiling python with pyenv
 brew "openssl" 
