@@ -24,7 +24,7 @@ brew "zsh"
 brew "zsh-completions"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
-cask "wezterm" args: ["no-quarantine"]
+cask "wez/wezterm/wezterm" 
 
 # For installing/compiling python with pyenv
 brew "openssl" 
