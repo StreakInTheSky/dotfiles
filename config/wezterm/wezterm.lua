@@ -1,20 +1,25 @@
 local wezterm = require 'wezterm';
 
-local theme = 'dark'
+local theme = 'light'
 
-local function theme_switcher (wezterm_config)
-	if type(wezterm_config.color_scheme) == "table" then
-		wezterm_config.color_scheme = wezterm_config.color_scheme[theme]
+local function theme_switcher (schemes)
+	if type(schemes) == "table" then
+		return schemes[theme]
 	end
-	return wezterm_config
+	return schemes
 end
 
-return theme_switcher({
-	color_scheme = {
-		dark = "TokyoNight Night",
+local function font_with_fallback(fonts)
+	return wezterm.font_with_fallback(fonts)
+end
+
+return {
+	color_scheme = theme_switcher({
+		dark = "TokyoNight Storm",
 		light = "TokyoNight Day",
-	},
-	font = wezterm.font("JetBrainsMono Nerd Font"),
+		night = "TokyoNight Night",
+	}),
+	font = font_with_fallback({"JetBrains Mono", "JetBrainsMono Nerd Font"}),
 	term = "wezterm",
 	keys = {
 		{key="LeftArrow", mods="ALT", action=wezterm.action{SendString="\x1bb"}},
@@ -22,4 +27,4 @@ return theme_switcher({
 		{key="LeftArrow", mods="SUPER", action=wezterm.action{SendString="\x01"}},
 		{key="RightArrow", mods="SUPER", action=wezterm.action{SendString="\x05"}},
 	},
-})
+}
