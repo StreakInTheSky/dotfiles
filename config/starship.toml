@@ -1,4 +1,7 @@
 command_timeout = 1000
 
+[deno]
+detect_files = ["deno.json", "deno.jsonc", "mod.ts", "mod.js", "deps.ts", "deps.js"]
+
 [nodejs]
 detect_extensions = []
