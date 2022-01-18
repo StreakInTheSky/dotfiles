@@ -14,6 +14,7 @@ local function font_with_fallback(fonts)
 end
 
 return {
+	ssh_domains = require 'ssh_domains';
 	color_scheme = theme_switcher({
 		dark = "TokyoNight Storm",
 		light = "TokyoNight Day",
