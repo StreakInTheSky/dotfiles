@@ -1,6 +1,6 @@
 #! /usr/local/bin/zsh
 
-theme=$([ $1 ] && [[ $1 = 'light' || $1 = 'night' ]] && echo $1 || echo 'dark')
+theme=$([ $1 ] && [ $1 = 'Light' ] && echo 'light' || echo 'dark')
 
 sed -i '' -r "s/^(local theme = ).*/\1\'$theme\'/" ~/.config/wezterm/wezterm.lua
 

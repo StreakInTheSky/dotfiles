@@ -1,10 +1,4 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
-bindkey -e
-# End of lines configured by zsh-newuser-install
+. /etc/zshrc
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -37,15 +31,23 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 export DOTFILES=~/.dotfiles
+
+function sync_system_theme() {
+	SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || echo 'Light')"
+	if [ "$THEME" != "$SYSTEM_THEME" ]; then
+		export THEME=$SYSTEM_THEME
+		source $DOTFILES/switch_theme $SYSTEM_THEME
+	fi
+}
+
+preexec_functions=(sync_system_theme)
+
 # sets terminal theme to system theme mode
-theme=$([ $(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null) ] || echo 'light')
-source $DOTFILES/switch_theme $theme
+sync_system_theme
 
-PATH="$DOTFILES/bin:$PATH"
-
-export PATH=$PATH
+export PATH="$DOTFILES/bin:$PATH"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 #aliases
 alias ls='lsd'
 alias vi='nvim'
-alias theme='source $DOTFILES/switch_theme'
