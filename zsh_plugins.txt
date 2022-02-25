@@ -5,8 +5,7 @@ zsh-users/zsh-autosuggestions
 # from oh-my-zsh
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/gitfast
-robbyrussell/oh-my-zsh path:plugins/ubuntu
 robbyrussell/oh-my-zsh path:plugins/nvm
 
 # needs to be last
-zdharma/fast-syntax-highlighting
+zsh-users/zsh-syntax-highlighting
