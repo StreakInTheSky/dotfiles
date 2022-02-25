@@ -9,18 +9,15 @@ local function theme_switcher (schemes)
 	return schemes
 end
 
-local function font_with_fallback(fonts)
-	return wezterm.font_with_fallback(fonts)
-end
-
 return {
-	ssh_domains = require 'ssh_domains';
 	color_scheme = theme_switcher({
 		dark = "TokyoNight Storm",
 		light = "TokyoNight Day",
 		night = "TokyoNight Night",
 	}),
-	font = font_with_fallback({"JetBrains Mono", "JetBrainsMono Nerd Font"}),
+	font = wezterm.font('JetBrainsMono Nerd Font'),
+	font_size = 12,
+	line_height = 1.1,
 	term = "wezterm",
 	keys = {
 		{key="LeftArrow", mods="ALT", action=wezterm.action{SendString="\x1bb"}},
