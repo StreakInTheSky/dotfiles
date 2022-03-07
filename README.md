@@ -16,20 +16,7 @@ To symlink files (will append ".old" to any conflicting files/directories)
 . ~/.dotfiles/link.zsh && symlink path/to/file /dir/to/put/link "name-of-link"
 ```
 
-## Other useful commands
-To change theme from light/dark (for WezTerm)
-```
-#Dark
-theme
-
-#Light
-theme "light"
-
-#To autoswitch based on macOS theme, source ~/.zshrc
-. ~/.zshrc
-```
-
-Alternatives to common commands
+## Commands of note
 ```
 bat # instead of cat/less
 z # instead of cd
