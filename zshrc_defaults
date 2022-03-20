@@ -1,7 +1,15 @@
-. /etc/zshrc
+if [ $TERM_PROGRAM != "Apple_Terminal"]; then
+    # Apple's Terminal has own setup and integrations
+    HISTFILE=$HOME/.zsh_history
+    HISTSIZE=2000
+    SAVEHIST=1000
+
+    # use wezterm's shell integrations
+   . /Applications/WezTerm.app/Contents/Resources/wezterm.sh
+fi
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
 fpath+=~/.zfunc
@@ -33,11 +41,11 @@ eval "$(zoxide init zsh)"
 export DOTFILES=~/.dotfiles
 
 function sync_system_theme() {
-	SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || echo 'Light')"
-	if [ "$THEME" != "$SYSTEM_THEME" ]; then
-		export THEME=$SYSTEM_THEME
-		source $DOTFILES/switch_theme $SYSTEM_THEME
-	fi
+   SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || echo 'Light')"
+   if [ "$THEME" != "$SYSTEM_THEME" ]; then
+      export THEME=$SYSTEM_THEME
+      source $DOTFILES/switch_theme $SYSTEM_THEME
+   fi
 }
 
 preexec_functions=(sync_system_theme)
