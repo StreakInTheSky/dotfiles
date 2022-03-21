@@ -1,4 +1,4 @@
-if [ $TERM_PROGRAM != "Apple_Terminal"]; then
+if [ $TERM_PROGRAM != "Apple_Terminal" ]; then
     # Apple's Terminal has own setup and integrations
     HISTFILE=$HOME/.zsh_history
     HISTSIZE=2000
