@@ -16,11 +16,10 @@ return {
 	}),
 	use_ime = true,
 	font = wezterm.font_with_fallback({
-	   "JetBrainsMono Nerd Font",
+	   "JetBrains Mono",
 	   "Noto Sans Mono CJK JP",
 	}),
 	font_size = 12,
-	line_height = 1.1,
 	term = "wezterm",
 	keys = {
 		{key="LeftArrow", mods="ALT", action=wezterm.action{SendString="\x1bb"}},
