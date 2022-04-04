@@ -12,9 +12,6 @@ curl -sSL https://raw.githubusercontent.com/StreakInTheSky/dotfiles/master/Brewf
 echo "\nCloning dotfiles repo"
 git clone https://github.com/StreakInTheSky/dotfiles.git ~/.dotfiles
 
-echo "\nInstalling zsh plugins with antibody"
-antibody bundle < ~/.dotfiles/zsh_plugins.txt > ~/.zsh_plugins.sh
-
 echo "\nSetting up fzf"
 $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-bash --no-fish --no-update-rc
 

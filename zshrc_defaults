@@ -22,10 +22,11 @@ autoload -Uz compinit
 compinit -C
 # End of lines added by compinstall
 
-export NVM_LAZY_LOAD=true
+export DOTFILES=~/.dotfiles
 
-#gets plugins bundled by antibody
-source ~/.zsh_plugins.sh
+# gets plugins sourced by sheldon
+export SHELDON_CONFIG_FILE="$DOTFILES/zsh_plugins.toml"
+eval "$(sheldon source)"
 
 # setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -39,7 +40,6 @@ PATH="$HOME/.poetry/bin:$PATH"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-export DOTFILES=~/.dotfiles
 
 function sync_system_theme() {
    SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || echo 'Light')"
