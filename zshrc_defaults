@@ -23,7 +23,8 @@ source ~/.zsh_plugins.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # setup pyenv
-eval "$(pyenv init -)"
+echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 PATH="$HOME/.poetry/bin:$PATH"
 
@@ -46,7 +47,7 @@ preexec_functions=(sync_system_theme)
 sync_system_theme
 
 export PATH="$DOTFILES/bin:$PATH"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="zsh -c 'col -bx | bat -l man -p'"
 
 #aliases
 alias ls='lsd'
