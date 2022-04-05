@@ -4,7 +4,7 @@ echo "Installing Developer tools for Mac"
 eval "$(xcode-select --install)"
 
 echo "\nInstalling Homebrew"
-/bin/bash -c "$(curl -sSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 echo "\nInstalling from Brewfile"
 curl -sSL https://raw.githubusercontent.com/StreakInTheSky/dotfiles/master/Brewfile | brew bundle --file=- 
@@ -22,13 +22,16 @@ echo "\nConfiguring .zshrc with defaults"
 echo "source ~/.dotfiles/zshrc_defaults" >> ~/.zshrc
 zsh -c "source ~/.zshrc"
 
-echo "\nInstalling node"
+echo "\nInstalling nvm and node"
+export NVM_DIR="$HOME/.nvm" && (
+  git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+  cd "$NVM_DIR"
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
 zsh -i -c "nvm install --lts"
 
 echo "\nInstalling python"
-git clone https://github.com/momo-lab/pyenv-install-latest.git "$(pyenv root)"/plugins/pyenv-install-latest
-pyenv install-latest
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+curl -sSL https://install.python-poetry.org | python3 -
 poetry completions zsh > ~/.zfunc/_poetry
 zsh -i -c "npm i -g pyright"
 

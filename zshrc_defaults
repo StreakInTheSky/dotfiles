@@ -22,6 +22,10 @@ autoload -Uz compinit
 compinit -C
 # End of lines added by compinstall
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh --no-use # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion # load nvm completions
+
 export DOTFILES=~/.dotfiles
 
 # gets plugins sourced by sheldon
@@ -31,11 +35,7 @@ eval "$(sheldon source)"
 # setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# setup pyenv
-echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-
-PATH="$HOME/.poetry/bin:$PATH"
+PATH="/Users/ross/Library/Python/3.9/bin:$PATH"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
