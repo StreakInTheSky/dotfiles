@@ -54,6 +54,15 @@ preexec_functions=(sync_system_theme)
 # sets terminal theme to system theme mode
 sync_system_theme
 
+# sets terminal tab title to cwd
+cwd_as_title() {
+    printf "\e]1;$(dirs)\a"
+}
+
+cwd_as_title
+
+chpwd_functions=(cwd_as_title)
+
 export PATH="$DOTFILES/bin:$PATH"
 export MANPAGER="zsh -c 'col -bx | bat -l man -p'"
 
