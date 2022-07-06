@@ -9,6 +9,16 @@ local function theme_switcher (schemes)
 	return schemes
 end
 
+local function basename(s, group)
+    return string.gsub(s, "(.*[/\\])(.*)", "%" .. group)
+end
+
+wezterm.on("format-tab-title", function(tab)
+    local cwd = tab.active_pane.title
+    local fg = basename(tab.active_pane.foreground_process_name, 2)
+    return tab.tab_index + 1 .. ": " .. cwd .. " — " .. fg
+end)
+
 return {
 	color_scheme = theme_switcher({
 		dark = "TokyoNight Storm",
