@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm';
 
-local theme = 'light'
+local theme = 'dark'
 
 local function theme_switcher (schemes)
 	if type(schemes) == "table" then
@@ -9,10 +9,19 @@ local function theme_switcher (schemes)
 	return schemes
 end
 
+local function getModule (name) 
+	ok, result = pcall(require, name)
+	if ok then
+		return result
+	end
+	return {}
+end
+
 return {
+	ssh_domains = getModule('ssh-domains'),
 	color_scheme = theme_switcher({
-		dark = "TokyoNight Storm",
-		light = "TokyoNight Day",
+		dark = "tokyonight-storm",
+		light = "tokyonight-day",
 	}),
 	use_ime = true,
 	font = wezterm.font_with_fallback({
