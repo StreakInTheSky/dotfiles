@@ -1,4 +1,4 @@
-if [ $TERM_PROGRAM != "Apple_Terminal" ]; then
+if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
     # Apple's Terminal has own setup and integrations
     HISTFILE=$HOME/.zsh_history
     HISTSIZE=2000
@@ -22,10 +22,6 @@ autoload -Uz compinit
 compinit -C
 # End of lines added by compinstall
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh --no-use # This loads nvm
-[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion # load nvm completions
-
 export DOTFILES=~/.dotfiles
 
 # gets plugins sourced by sheldon
@@ -34,6 +30,10 @@ eval "$(sheldon source)"
 
 # setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh --no-use # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion # load nvm completions
 
 PATH="/Users/ross/Library/Python/3.9/bin:$PATH"
 
