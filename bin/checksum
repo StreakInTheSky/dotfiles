@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+output="$(shasum -a 256 $1)"
+sha256=$output[(w)1]
+
+if [ $sha256 = "$(cat $1.sha256)" ]; then
+	echo "You're good"
+else
+	echo "Not good"
+fi
