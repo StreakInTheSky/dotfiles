@@ -72,7 +72,7 @@ run_nvm_use() {
 cwd_as_title
 run_nvm_use
 
-chpwd_functions=(cwd_as_title run_nvm_use)
+chpwd_functions+=(cwd_as_title run_nvm_use)
 
 export PATH="$DOTFILES/bin:$PATH"
 export MANPAGER="zsh -c 'col -bx | bat -l man -p'"
