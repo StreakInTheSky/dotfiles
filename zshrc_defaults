@@ -56,7 +56,7 @@ sync_system_theme
 
 # sets terminal tab title to cwd
 cwd_as_title() {
-    printf "\e]1;$(dirs)\a"
+    printf "\e]1;${$(dirs):t3}\a"
 }
 
 run_nvm_use() {
