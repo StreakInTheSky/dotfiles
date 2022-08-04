@@ -39,7 +39,6 @@ echo "\nInstalling rust"
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 rustup completions zsh > ~/.zfunc/_rustup
 rustup update nightly
-rustup +nightly component add rust-analyzer-preview
 
 echo "\nCreating symlinks to config files"
 zsh ~/.dotfiles/link.zsh
