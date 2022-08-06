@@ -5,3 +5,6 @@ detect_files = ["deno.json", "deno.jsonc", "mod.ts", "mod.js", "deps.ts", "deps.
 
 [nodejs]
 detect_extensions = []
+
+[python]
+detect_extensions = []
