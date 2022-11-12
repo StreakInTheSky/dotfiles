@@ -5,7 +5,9 @@ if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
     SAVEHIST=1000
 
     # use wezterm's shell integrations
+   if [ -d /Applicatons/Wezterm.app ]; then
    . /Applications/WezTerm.app/Contents/Resources/wezterm.sh
+   fi
 fi
 
 if type brew &>/dev/null; then
@@ -42,7 +44,7 @@ eval "$(zoxide init zsh)"
 
 
 function sync_system_theme() {
-   SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || echo 'Light')"
+   SYSTEM_THEME="$(defaults read -globalDomain AppleInterfaceStyle 2>/dev/null || [ $(uname) = "Darwin" ] && echo 'Light' || echo 'Dark')"
    if [ "$THEME" != "$SYSTEM_THEME" ]; then
       export THEME=$SYSTEM_THEME
       source $DOTFILES/switch_theme $SYSTEM_THEME

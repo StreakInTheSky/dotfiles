@@ -2,7 +2,14 @@
 
 theme=$([ $1 ] && [ $1 = 'Light' ] && echo 'light' || echo 'dark')
 
-sed -i '' -r "s/^(local theme = ).*/\1\'$theme\'/" ~/.config/wezterm/wezterm.lua
+if [ -d ~/.config/wezterm ]; then
+	if [ $(uname) = 'Darwin' ]; then
+		sed -i '' -r "s/^(local theme = ).*/\1\'$theme\'/" ~/.config/wezterm/wezterm.lua
+	else
+		sed -i -r "s/^(local theme = ).*/\1\'$theme\'/" ~/.config/wezterm/wezterm.lua
+	fi
+fi
+
 
 if [ $theme = 'light' ]; then
 	BAT_THEME='Coldark-Cold'
