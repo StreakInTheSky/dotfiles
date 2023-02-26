@@ -26,9 +26,16 @@ Plug 'NMAC427/guess-indent.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 Plug 'crispgm/nvim-go'
-Plug 'mattn/emmet-vim', { 'for': [ 'html', 'javascript', 'typescriptreact' ] }
+Plug 'mattn/emmet-vim' 
+Plug 'Olical/conjure'
+Plug 'clojure-vim/vim-jack-in'
+Plug 'PaterJason/cmp-conjure'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'jez/vim-better-sml', { 'for': 'sml' }
 Plug 'kristijanhusak/orgmode.nvim' 
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -50,6 +57,11 @@ set shiftwidth=4
 
 set signcolumn=yes
 set number relativenumber
+
+let maplocalleader=","
+
+filetype plugin indent on
+
 "toggles relative number in insert mode
 augroup numbertoggle
 	autocmd!
@@ -57,6 +69,10 @@ augroup numbertoggle
 	autocmd BufLeave,FocusLost,InsertEnter	 * set norelativenumber
 augroup END
 
+
+"conjure
+let g:conjure#mapping#doc_word = "k"
+autocmd BufNewFile conjure-log-* lua vim.diagnostic.disable(0)
 
 " better sml
 augroup vimbettersml
@@ -91,6 +107,8 @@ augroup vimbettersml
 	" let g:sml_greek_tyvar_show_tick = 1
 augroup END
 
+
+
 lua << EOF
 require('lsp')
 require('tree-sitter')
@@ -103,12 +121,15 @@ vim.g.indent_blankline_filetype_exclude = { 'help' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 
+
 -- Gitsigns
 require('gitsigns').setup {}
 
 -- Go
 require('go').setup {
-	auto_lint = false --use golangci_lint_ls with lsp
+	auto_lint = false, --use golangci_lint_ls with lsp
+	test_popup_auto_leave = true,
+	test_popup_width = 100,
 }
 
 require('dap-go').setup {}
